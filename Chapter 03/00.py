@@ -1,37 +1,61 @@
-# 3. Quarter of the Year
-# Write a program that asks the user for a month as 
-# a number between 1 and 12. The program should display 
-# a message indicating whether the month is in the 
-# first quarter, the second quarter, the third 
-# quarter, or the fourth quarter of the year. 
-# Following are the guidelines:
+# 7. Grade Calculator
 #
-# • If the user enters either 1, 2, or 3, the month is in the first quarter.
-# • If the user enters a number between 4 and 6, the month is in the second quarter.
-# • If the number is either 7, 8, or 9, the month is in the third quarter.
-# • If the month is between 10 and 12, the month is in the fourth quarter.
-# • If the number is not between 1 and 12, the program should display an error.
+# A class has two tests worth 25 points each along 
+# with a main exam worth 50 points. For a student 
+# to pass the class, they must obtain an overall 
+# score of at least 50 points, and must obtain at 
+# least 25 points in the main exam. If a student’s 
+# total score is less than 50 or they obtain less 
+# than 25 points in the main exam, they receive a 
+# grade of “Fail”. Otherwise, their grade is as follows:
+#
+# If they get more than 80, they get a grade of 
+# “Distinction”. 50–59 = “Pass”. If they get less 
+# than 80 but more than 60, they get a “Credit” grade.
+#
+# If they get less than 60, they get a ”Pass” grade.
+#
+# Write a program that prompts the user to enter their 
+# points for both tests and the exam and converts 
+# the values to integers. The program should first 
+# check if the points entered for the tests and exam 
+# are valid. If any of the test scores are not between 
+# 0 and 25, or the exam score is not between 0 and 50, 
+# the program should display an error message. Otherwise, 
+# the program should display the total points and the grade.
 
-user_month = int(input('\nEnter a month between 1 and 12: '))
+# 1. prompts the user to enter their 
+#   points for both tests and the exam and converts 
+#   the values to integers.
+test_1_points = int(input("\nEnter points for test #1: "))
+
 message = ""
 
-if user_month < 1 or user_month > 12:
-    message = "\nError. Month must be between 1 and 12.\n" + \
-              "Rerun program and try again.\n"
-              
+if test_1_points >= 0 and test_1_points <= 25:
+    test_2_points = int(input("Enter points for test #2: "))
+
+    if test_2_points >= 0 and test_2_points <= 25:
+        exam_points   = int(input("Enter points for exam   : "))
+        
+        if exam_points >= 0 and exam_points <= 50:
+            total_points = test_1_points + test_2_points + exam_points
+
+            if total_points < 50 or exam_points < 25:
+                message = "FAIL"
+
+            else:
+                if total_points > 80:
+                    message = "Distinction"
+                elif total_points <= 80 and total_points >= 60:
+                    message = "Credit"
+                elif total_points < 60:
+                    message = "Pass"
+
+        else:
+            message = "Invalid. Points for exam must be between 0 - 50."
+    else:
+        message = "Invalid. Points for test #2 must be between 0 - 25."
 else:
-    message = "\nMonth " + format(user_month) + " is in the"
+    message = "Invalid. Points for test #1 must be between 0 - 25."
 
-    if user_month >= 1 and user_month <= 3:
-        message += " first quarter.\n"
-
-    elif user_month >= 4 and user_month <= 6:
-        message += " second quarter.\n"
-
-    elif user_month >= 7 and user_month <= 9:
-        message += " third quarter.\n"
-
-    elif user_month >= 10 and user_month <= 12:
-        message += " fourth quarter.\n"
-    
 print(message)
