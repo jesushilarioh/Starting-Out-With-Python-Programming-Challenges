@@ -1,61 +1,58 @@
-# 7. Grade Calculator
+# 12. Software Sales
+# A software company sells a package that retails for $99. 
+# Quantity discounts are given according to the following 
+# table:
 #
-# A class has two tests worth 25 points each along 
-# with a main exam worth 50 points. For a student 
-# to pass the class, they must obtain an overall 
-# score of at least 50 points, and must obtain at 
-# least 25 points in the main exam. If a student’s 
-# total score is less than 50 or they obtain less 
-# than 25 points in the main exam, they receive a 
-# grade of “Fail”. Otherwise, their grade is as follows:
+# Quantity      Discount
+# 10–19         10% 
+# 20–49         20% 
+# 50–99         30% 
+# 100 or more   40%
 #
-# If they get more than 80, they get a grade of 
-# “Distinction”. 50–59 = “Pass”. If they get less 
-# than 80 but more than 60, they get a “Credit” grade.
-#
-# If they get less than 60, they get a ”Pass” grade.
-#
-# Write a program that prompts the user to enter their 
-# points for both tests and the exam and converts 
-# the values to integers. The program should first 
-# check if the points entered for the tests and exam 
-# are valid. If any of the test scores are not between 
-# 0 and 25, or the exam score is not between 0 and 50, 
-# the program should display an error message. Otherwise, 
-# the program should display the total points and the grade.
+# Write a program that asks the user to enter the number of 
+# packages purchased. The program should then display the 
+# amount of the discount (if any) and the total amount of 
+# the purchase after the discount.
 
-# 1. prompts the user to enter their 
-#   points for both tests and the exam and converts 
-#   the values to integers.
-test_1_points = int(input("\nEnter points for test #1: "))
+PRICE_PER_PACKAGE = 99.00
 
-message = ""
+# 1. asks the user to enter the number of 
+# packages purchased.
+number_of_packages = float(input('\nEnter # of packages purchased: '))
 
-if test_1_points >= 0 and test_1_points <= 25:
-    test_2_points = int(input("Enter points for test #2: "))
+# 2. display the 
+# amount of the discount (if any) and the total amount of 
+# the purchase after the discount.
+display_message = ""
 
-    if test_2_points >= 0 and test_2_points <= 25:
-        exam_points   = int(input("Enter points for exam   : "))
-        
-        if exam_points >= 0 and exam_points <= 50:
-            total_points = test_1_points + test_2_points + exam_points
+if number_of_packages < 0:
+    display_message = "Error. # of packages must be greater than 0.\nRe-run program and try again."
 
-            if total_points < 50 or exam_points < 25:
-                message = "FAIL"
-
-            else:
-                if total_points > 80:
-                    message = "Distinction"
-                elif total_points <= 80 and total_points >= 60:
-                    message = "Credit"
-                elif total_points < 60:
-                    message = "Pass"
-
-        else:
-            message = "Invalid. Points for exam must be between 0 - 50."
-    else:
-        message = "Invalid. Points for test #2 must be between 0 - 25."
 else:
-    message = "Invalid. Points for test #1 must be between 0 - 25."
+    discount_percentage = 0
 
-print(message)
+    if number_of_packages < 10:
+        discount_percentage = 0
+
+    elif number_of_packages >= 10 and number_of_packages <= 19:
+        discount_percentage = .10
+
+    elif number_of_packages >= 20 and number_of_packages <= 49:
+        discount_percentage = .20
+
+    elif number_of_packages >= 50 and number_of_packages <= 99:
+        discount_percentage = .30
+
+    elif number_of_packages >= 100:
+        discount_percentage = .40
+        
+    package_total = number_of_packages * PRICE_PER_PACKAGE
+    discount_amount = (package_total) * discount_percentage
+    grand_total = package_total - discount_amount
+    display_message = "Package total = $" + format(package_total, ',.2f') + \
+                      "\nDiscount Percentage = " + format(discount_percentage, '.0%') + \
+                      "\nDiscount amount = $" + format(discount_amount, ',.2f') + \
+                      "\nGrand total  = $" + format(grand_total, ',.2f')
+
+
+print("\n" + display_message + "\n")
