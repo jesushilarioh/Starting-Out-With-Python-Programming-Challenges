@@ -1,5 +1,3 @@
-from xml.dom.expatbuilder import FragmentBuilder
-
 
 fastestLapTime = 0.0
 slowestLapTime = 0.0
