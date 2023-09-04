@@ -1,4 +1,3 @@
-from traceback import format_exc
 
 
 TUITION_INCREASE = .03
