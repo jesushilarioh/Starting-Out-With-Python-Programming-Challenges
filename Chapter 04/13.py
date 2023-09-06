@@ -1,6 +1,3 @@
-from tracemalloc import start
-
-
 starting_number_of_organisims = int(input("\nStarting number of organisims: "))
 
 while starting_number_of_organisims < 0:
